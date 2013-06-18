@@ -1,0 +1,19 @@
+% 3 datums, 3 events - prohibit datum 1 and 2 being in the same event.
+
+
+% Define
+
+#const n_events = 2.
+#const n_datums = 3.
+#const n_days = 3.
+
+datum(1..n_datums).
+event(1..n_events).
+
+
+% Generate
+1 { datum_in_event(D,1..n_events) } 1 :- datum(D).
+
+
+% Test
+:- datum_in_event(1,X), datum_in_event(2,X).
