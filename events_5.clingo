@@ -1,3 +1,9 @@
+% We are given a set of datums (items of social network data)
+% Each datum has a temporal distribution (the probability density function output from our adapted SUTime) 
+% We use discrete time (days in this toy example)
+% The task is to cluster the datums into events, and decide which day each event is on, maximizing the probability payoff (mistakenly called "cost"), satisfying the various constraints.
+
+
 % cluster datums into events, testing day validity.
 % handle impossible days
 % choose best day by maximizing event payoff.
@@ -13,7 +19,8 @@ datum(1..n_datums).
 %event(1..n_events).
 day(1..n_days).
 
-% Define the possible days for each datum (with probability "costs")
+% Define the possible days for each datum (with probability "costs" - these are output by the tempex software)
+
 datum_on_day(1,1,4).
 datum_on_day(1,2,1).
 datum_on_day(1,3,1).
@@ -28,7 +35,7 @@ datum_on_day(3,3,1).
 
 % Define the possible days for each datum
 datum_on_day(D,Y) :- datum_on_day(D,Y,C), C > 0.
--datum_on_day(D,Y) :- datum_on_day(D,Y,C), C == 0.
+-datum_on_day(D,Y) :- datum_on_day(D,Y,C), C == 0.  % A datum cannot occur on a day where its cost is zero.
 
 
 
